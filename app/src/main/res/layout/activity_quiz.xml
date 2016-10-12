@@ -63,12 +63,12 @@
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
         android:orientation="vertical"
+        android:id="@+id/radioGroup"
         android:layout_marginTop="@dimen/activity_vertical_margin">
 
         <RadioButton
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="[Option 1]"
             android:id="@+id/op1Radio"
             android:textSize="26dp"
             android:onClick="selecionarOp"
@@ -76,15 +76,13 @@
         <RadioButton
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="[Option 2]"
             android:id="@+id/op2Radio"
-            android:textSize="26dp"
+            android:textSize="26sp"
             android:onClick="selecionarOp"
             />
         <RadioButton
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="[Option 3]"
             android:id="@+id/op3Radio"
             android:textSize="26dp"
             android:onClick="selecionarOp"
@@ -92,7 +90,6 @@
         <RadioButton
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="[Option 4]"
             android:id="@+id/op4Radio"
             android:textSize="26dp"
             android:onClick="selecionarOp"
@@ -100,11 +97,20 @@
         <RadioButton
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="[Option 5]"
             android:id="@+id/op5Radio"
             android:textSize="26dp"
             android:onClick="selecionarOp"
             />
     </RadioGroup>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#cc3333"
+        android:textAlignment="center"
+        android:text=""
+        android:textSize="25dp"
+        android:id="@+id/exibeResposta"
+        />
 
 </LinearLayout>

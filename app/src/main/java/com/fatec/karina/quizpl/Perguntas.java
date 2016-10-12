@@ -8,7 +8,8 @@ import java.util.ArrayList;
 
 public class Perguntas {
     public String pergunta;
-    public String resposta;
+    public int resposta;
+    public int respDoUsuario;
     public String[] opcoes;
 
     private ArrayList<Perguntas> questoes;
