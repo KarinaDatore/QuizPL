@@ -1,4 +1,4 @@
-package com.example.opa.myapplication;
+package com.fatec.karina.quizpl;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

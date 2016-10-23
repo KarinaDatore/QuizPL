@@ -28,13 +28,24 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/iniciar"
+        android:src="@drawable/botao_quiz"
+        android:onClick="iniciarTeste"
+        android:background="#ffffff"
+        android:layout_gravity="center_horizontal" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Clique no botão abaixo para iniciar o teste"
+        android:text="Qtde"
         android:textSize="20dp"
         android:textAlignment="center"
         android:textColor="#444443"
+<<<<<<< HEAD
         android:id="@+id/textView2"
         android:layout_centerVertical="true"
         android:layout_alignRight="@+id/classificacao"
@@ -76,5 +87,36 @@
         android:onClick="iniciarTeste"/>
 
 </RelativeLayout>
+=======
+        android:layout_gravity="center"
+        />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:ems="10"
+        android:id="@+id/editText2"
+        android:layout_gravity="center"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Histórico"
+        android:textSize="20dp"
+        android:textAlignment="center"
+        android:textColor="#444443"
+        android:layout_gravity="center"
+        />
+
+    <ImageButton
+        android:layout_width="160dp"
+        android:layout_height="94dp"
+        android:id="@+id/classificacao"
+        android:src="@drawable/boata_registros"
+        android:onClick="iniciarClassificacao"
+        android:background="#ffffff"
+        android:layout_gravity="center_horizontal" />
+>>>>>>> origin/master
 
 </LinearLayout>
