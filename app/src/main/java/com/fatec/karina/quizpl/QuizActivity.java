@@ -34,6 +34,7 @@ public class QuizActivity extends AppCompatActivity {
          dados.criarTeste();
          Collections.shuffle(dados.questoes);
          atualizarQuestao();
+         //alterei para testar aqui
 
     }
 
