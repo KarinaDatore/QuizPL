@@ -12,6 +12,9 @@
     android:orientation="vertical"
     android:background="#ffffff"
     android:weightSum="1">
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <TextView
         android:layout_width="wrap_content"
@@ -19,8 +22,11 @@
         android:text="Tema: Engenharia de Software"
         android:textSize="30dp"
         android:textAlignment="center"
-        android:textColor="#6666ff"
-        />
+        android:textColor="@color/abc_background_cache_hint_selector_material_dark"
+        android:id="@+id/textView3"
+        android:layout_below="@+id/imageView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -29,24 +35,46 @@
         android:textSize="20dp"
         android:textAlignment="center"
         android:textColor="#444443"
-        />
-
-    <ImageButton
-        android:layout_width="187dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/classificacao"
-        android:src="@drawable/boata_registros"
-        android:onClick="iniciarClassificacao"
-        android:background="#ffffff"
-        android:layout_weight="0.23" />
+        android:id="@+id/textView2"
+        android:layout_centerVertical="true"
+        android:layout_alignRight="@+id/classificacao"
+        android:layout_alignEnd="@+id/classificacao" />
 
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/iniciar"
-        android:src="@drawable/botao_quiz"
-        android:onClick="iniciarTeste"
+        android:id="@+id/classificacao"
+        android:onClick="iniciarClassificacao"
         android:background="#ffffff"
-        android:layout_gravity="center_horizontal" />
+        android:layout_weight="0.23"
+        android:src="@drawable/botao_histo"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView"
+        android:src="@drawable/logo"
+
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView2"
+        android:src="@drawable/botao_quiz"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_toLeftOf="@+id/classificacao"
+        android:layout_toStartOf="@+id/classificacao"
+        android:layout_alignParentBottom="true"
+        android:layout_alignTop="@+id/classificacao"
+        android:onClick="iniciarTeste"/>
+
+</RelativeLayout>
 
 </LinearLayout>
