@@ -7,6 +7,6 @@ public class Perguntas {
     public String pergunta;
     public int resposta;
     public String[] opcoes;
-    private ArrayList<Perguntas> questoes;
+    ArrayList<Perguntas> questoes;
 
 }

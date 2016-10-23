@@ -10,17 +10,17 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
-import com.example.opa.myapplication.Database;
+
 
 public class QuizActivity extends AppCompatActivity {
 
     Database dados = new Database();
 
-    private ArrayList<Perguntas> questoes;
-    private String[] respostas = new String[5];
-    private String[] tela;
-    private int[] minhaResposta = new int[5];
-    private int posicao = 0;
+    public ArrayList<Perguntas> questoes;
+    public String[] respostas = new String[5];
+    public String[] tela;
+    public int[] minhaResposta = new int[5];
+    public int posicao = 0;
     int pontos = 0;
 
      @Override
