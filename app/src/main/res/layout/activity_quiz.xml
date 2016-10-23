@@ -25,14 +25,14 @@
             android:layout_gravity="center"
             android:id="@+id/voltar"
             android:src="@drawable/seta_esquerda"
-            android:onClick="voltar"
             android:background="#ffffff"
+            android:clickable = "false"
             />
 
         <TextView
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:text="x / 10"
+            android:text=""
             android:textSize="20dp"
             android:id="@+id/posicaoTextView"
             android:textAlignment="center"
@@ -45,8 +45,8 @@
             android:layout_gravity="center"
             android:id="@+id/avancar"
             android:src="@drawable/seta_direita"
-            android:onClick="avancar"
             android:background="#ffffff"
+            android:clickable = "false"
             />
 
     </LinearLayout>

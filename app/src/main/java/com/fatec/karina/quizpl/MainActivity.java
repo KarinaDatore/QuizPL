@@ -14,10 +14,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void iniciarTeste(View view){
+        int qtde = (R.id.editText2);
         Intent i = new Intent(getApplicationContext(), QuizActivity.class);
+        i.putExtra("quantidade", qtde);
         startActivity(i);
 
     }
+
 
     public void iniciarClassificacao(View view){
         Intent i = new Intent(getApplicationContext(), HistoryActivity.class);

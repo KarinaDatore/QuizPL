@@ -23,14 +23,16 @@ public class QuizActivity extends AppCompatActivity {
     public int posicao = 0;
     int pontos = 0;
 
+
      @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
 
-        dados.criarTeste();
-        Collections.shuffle(dados.questoes);
-        atualizarQuestao();
+         dados.criarTeste();
+         Collections.shuffle(dados.questoes);
+         atualizarQuestao();
+         int qtde = getIntent().getIntExtra("quantidade",0);
     }
 
   public void limparRadios(){
@@ -46,7 +48,7 @@ public class QuizActivity extends AppCompatActivity {
         limparRadios();
 
         TextView pTextView = (TextView) findViewById(R.id.posicaoTextView);
-        pTextView.setText((posicao + 1) + " de " + (dados.questoes.size()));
+        pTextView.setText((posicao + 1) + " de " + ("nada"));
 
         TextView pergTextView = (TextView) findViewById(R.id.perguntaTextView);
         pergTextView.setText(p.pergunta);
@@ -78,7 +80,7 @@ public class QuizActivity extends AppCompatActivity {
     }
 
     public void avancar(View view){
-limparRadios();
+        limparRadios();
         if(posicao < dados.questoes.size()-1){
             posicao++;
             atualizarQuestao();
@@ -95,6 +97,7 @@ limparRadios();
 
         TextView exibindo = (TextView)findViewById(R.id.exibeResposta);
         exibindo.setText("pontos: " + pontos);
+
     }
 
     public void selecionarOp(View view){
