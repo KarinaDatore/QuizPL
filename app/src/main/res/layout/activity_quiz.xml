@@ -23,7 +23,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:id="@+id/voltar"
-            android:src="@drawable/seta_esquerda"
             android:background="#ffffff"
             android:clickable = "false"
             />
@@ -43,7 +42,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:id="@+id/avancar"
-            android:src="@drawable/seta_direita"
             android:background="#ffffff"
             android:clickable = "false"
             />
