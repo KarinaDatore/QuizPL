@@ -10,8 +10,11 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
+import com.example.opa.myapplication.Database;
 
 public class QuizActivity extends AppCompatActivity {
+
+    Database dados = new Database();
 
     private ArrayList<Perguntas> questoes;
     private String[] respostas = new String[5];
@@ -20,125 +23,83 @@ public class QuizActivity extends AppCompatActivity {
     private int posicao = 0;
     int pontos = 0;
 
-    @Override
+     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
 
-        criarTeste();
-        Collections.shuffle(questoes);
+        dados.criarTeste();
+        Collections.shuffle(dados.questoes);
         atualizarQuestao();
     }
 
-    public void criarTeste(){
-        questoes = new ArrayList<>();
+  public void limparRadios(){
+        RadioGroup r1 = (RadioGroup)findViewById(R.id.radioGroup);
+        r1.clearFocus();
+        r1.clearCheck();
 
-        Perguntas p1 = new Perguntas();
-        p1.pergunta="Quanto é um mais um?";
-        p1.resposta=2;
-        p1.opcoes=new String[]{"um","dois","três","quatro","cinco"};
-        questoes.add(p1);
-
-        Perguntas p2 = new Perguntas();
-        p2.pergunta="Quanto é dois mais dois?";
-        p2.resposta=4;
-        p2.opcoes=new String[]{"I","II","III","IV","V"};
-        questoes.add(p2);
-
-        Perguntas p3 = new Perguntas();
-        p3.pergunta="Quanto é dois mais um?";
-        p3.resposta=3;
-        p3.opcoes=new String[]{"1","2","3","4","5"};
-        questoes.add(p3);
 
     }
 
-    public void atualizarQuestao(){
-        Perguntas p = questoes.get(posicao);
+    public void atualizarQuestao() {
+        Perguntas p = dados.questoes.get(posicao);
+        limparRadios();
 
-        TextView pTextView = (TextView)findViewById(R.id.posicaoTextView);
-        pTextView.setText((posicao+1)+" de "+questoes.size());
+        TextView pTextView = (TextView) findViewById(R.id.posicaoTextView);
+        pTextView.setText((posicao + 1) + " de " + (dados.questoes.size()));
 
-        TextView pergTextView = (TextView)findViewById(R.id.perguntaTextView);
+        TextView pergTextView = (TextView) findViewById(R.id.perguntaTextView);
         pergTextView.setText(p.pergunta);
 
-        RadioButton op1 = (RadioButton)findViewById(R.id.op1Radio);
+        RadioButton op1 = (RadioButton) findViewById(R.id.op1Radio);
         op1.setText(p.opcoes[0]);
-        op1.setSelected(false);
 
-        RadioButton op2 = (RadioButton)findViewById(R.id.op2Radio);
+        RadioButton op2 = (RadioButton) findViewById(R.id.op2Radio);
         op2.setText(p.opcoes[1]);
-        op2.setSelected(false);
 
-        RadioButton op3 = (RadioButton)findViewById(R.id.op3Radio);
+        RadioButton op3 = (RadioButton) findViewById(R.id.op3Radio);
         op3.setText(p.opcoes[2]);
-        op3.setSelected(false);
 
-        RadioButton op4 = (RadioButton)findViewById(R.id.op4Radio);
+        RadioButton op4 = (RadioButton) findViewById(R.id.op4Radio);
         op4.setText(p.opcoes[3]);
-        op4.setSelected(false);
 
-        RadioButton op5 = (RadioButton)findViewById(R.id.op5Radio);
+        RadioButton op5 = (RadioButton) findViewById(R.id.x);
         op5.setText(p.opcoes[4]);
-        op5.setSelected(false);
 
-        int i=0;
-        for(int c = 1; c < 5; c++){
-            Random rdn = new Random();
-            int min = 1;
-            int max = 5;
-            i = rdn.nextInt(max - min + 1) + min;
-            System.out.println(i);
-        }
-
-    }
+            }
 
     public void voltar(View view){
-        if(posicao>0){
+        limparRadios();
+        if(posicao > 0){
             posicao--;
             atualizarQuestao();
+
         }
     }
 
     public void avancar(View view){
-        if(posicao<questoes.size()-1){
+limparRadios();
+        if(posicao < dados.questoes.size()-1){
             posicao++;
             atualizarQuestao();
-
         }
     }
 
     public void armazenaResposta(int valor){
-        minhaResposta[valor] = valor;
-
-
-
-        Perguntas p1 = new Perguntas();
-        p1.respDoUsuario=valor;
-        if(p1.respDoUsuario == p1.resposta){
+        Perguntas p = dados.questoes.get(posicao);
+        if(valor == p.resposta){
             pontos+=1;
-        }
-
-        Perguntas p2 = new Perguntas();
-        p2.respDoUsuario=valor;
-        if(p2.respDoUsuario == p2.resposta){
-            pontos+=1;
-        }
-
-        Perguntas p3 = new Perguntas();
-        p3.respDoUsuario=valor;
-        if(p3.respDoUsuario == p3.resposta){
-            pontos+=1;
-        }
+                    }
+        limparRadios();
+        avancar(findViewById(R.id.activity_quiz));
 
         TextView exibindo = (TextView)findViewById(R.id.exibeResposta);
-        exibindo.setText("pontos: "+ pontos);
+        exibindo.setText("pontos: " + pontos);
     }
 
     public void selecionarOp(View view){
-        boolean checked = ((RadioButton) view).isChecked();
 
-        switch(view.getId()) {
+       switch(view.getId()) {
             case R.id.op1Radio:
                 TextView exibe = (TextView)findViewById(R.id.exibeResposta);
                 exibe.setText("op1Radio");
@@ -159,11 +120,13 @@ public class QuizActivity extends AppCompatActivity {
                 exibe.setText("op4Radio");
                 armazenaResposta(4);
                 break;
-            case R.id.op5Radio:
+            case R.id.x:
                 exibe = (TextView)findViewById(R.id.exibeResposta);
-                exibe.setText("op5Radio");
+                exibe.setText("x");
                 armazenaResposta(5);
                 break;
+            default:
+                setContentView(R.layout.activity_quiz);
         }
 
     }
