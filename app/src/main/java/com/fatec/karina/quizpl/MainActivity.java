@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -15,6 +16,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void iniciarTeste(View view){
         Intent i = new Intent(getApplicationContext(), QuizActivity.class);
+        EditText editnumber = (EditText) findViewById(R.id.editText2);
+        int qtde = Integer.parseInt(editnumber.getText().toString());
+        i.putExtra("quantidade", qtde);
         startActivity(i);
 
     }
