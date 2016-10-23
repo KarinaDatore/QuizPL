@@ -28,11 +28,13 @@ public class QuizActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
-
+         int qtde = getIntent().getIntExtra("quantidade",0);
+         TextView pTextView = (TextView) findViewById(R.id.posicaoTextView);
+         pTextView.setText(posicao + " de "+ qtde);
          dados.criarTeste();
          Collections.shuffle(dados.questoes);
          atualizarQuestao();
-         int qtde = getIntent().getIntExtra("quantidade",0);
+
     }
 
   public void limparRadios(){
@@ -47,8 +49,6 @@ public class QuizActivity extends AppCompatActivity {
         Perguntas p = dados.questoes.get(posicao);
         limparRadios();
 
-        TextView pTextView = (TextView) findViewById(R.id.posicaoTextView);
-        pTextView.setText((posicao + 1) + " de " + ("nada"));
 
         TextView pergTextView = (TextView) findViewById(R.id.perguntaTextView);
         pergTextView.setText(p.pergunta);
