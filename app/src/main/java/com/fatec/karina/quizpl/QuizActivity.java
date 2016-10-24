@@ -15,44 +15,41 @@ import java.util.Random;
 
 public class QuizActivity extends AppCompatActivity {
 
+    MainActivity a = new MainActivity();
     Database dados = new Database();
+    //EditText nome = (EditText) findViewById(R.id.nomeDoInfeliz);
+    RadioButton qtPerguntas15, qtPerguntas27;
+    private int posicao = 0;
+    int pontos= 0;
+    int prox = 27 ;
 
-    public ArrayList<Perguntas> questoes;
-    public String[] respostas = new String[5];
-    public String[] tela;
-    public int[] minhaResposta = new int[5];
-    public int posicao = 0;
-    int pontos = 0;
-    int x = 2;
-    int y = x;
 
-     @Override
+
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
-         int qtde = getIntent().getIntExtra("quantidade",0);
-         TextView pTextView = (TextView) findViewById(R.id.posicaoTextView);
-         pTextView.setText(posicao + " de "+ qtde);
-         dados.criarTeste();
-         Collections.shuffle(dados.questoes);
-         atualizarQuestao();
 
+
+        dados.criarTeste();
+        Collections.shuffle(dados.questoes);
+        atualizarQuestao();
     }
 
-  public void limparRadios(){
-        RadioGroup r1 = (RadioGroup)findViewById(R.id.radioGroup);
+
+    public void limparRadios() {
+        RadioGroup r1 = (RadioGroup) findViewById(R.id.radioGroup);
         r1.clearFocus();
         r1.clearCheck();
-
-
     }
 
     public void atualizarQuestao() {
-
-
         Perguntas p = dados.questoes.get(posicao);
         limparRadios();
 
+        TextView pTextView = (TextView) findViewById(R.id.posicaoTextView);
+        pTextView.setText((posicao + 1) + " de " + prox);
 
         TextView pergTextView = (TextView) findViewById(R.id.perguntaTextView);
         pergTextView.setText(p.pergunta);
@@ -74,79 +71,79 @@ public class QuizActivity extends AppCompatActivity {
 
     }
 
-    public void voltar(View view){
+    public void voltar(View view) {
         limparRadios();
-        if(posicao > 0){
+        if (posicao > 0) {
             posicao--;
             atualizarQuestao();
-
         }
     }
-
-    public void avancar(View view){
-            limparRadios();
-            if(posicao < dados.questoes.size()-1){
-                posicao++;
-                atualizarQuestao();
-                y-=1;
-        }
-
-        if (posicao == x) {
-            //resultado();
-        }
+    public void Resultado(View view){
+        Intent i = new Intent(getApplicationContext(), Resultado.class);
+        startActivity(i);
 
     }
-
-    public void resultado(){
-        Intent i2 = new Intent(getApplicationContext(), Resultado.class);
-        i2.putExtra("pontos", pontos);
-        startActivity(i2);
-    }
-    
-    public void armazenaResposta(int valor){
-        Perguntas p = dados.questoes.get(posicao);
-            if(valor == p.resposta){
-                pontos+=1;
+    public void avancar(View view) {
+        limparRadios();
+        if (posicao < prox-1) {
+            posicao++;
+            atualizarQuestao();
+        }else if(posicao==prox-1){
+            try {
+                Resultado(view);
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-            limparRadios();
-            avancar(findViewById(R.id.activity_quiz));
-            TextView exibindo = (TextView)findViewById(R.id.exibeResposta);
-            exibindo.setText("pontos: " + pontos);
+        }
     }
 
-    public void selecionarOp(View view){
+    public void armazenaResposta(int valor) {
+        Perguntas p = dados.questoes.get(posicao);
+        if (valor == p.resposta) {
+            pontos += 1;
+        }
+        limparRadios();
+        avancar(findViewById(R.id.activity_quiz));
 
-       switch(view.getId()) {
+        TextView exibindo = (TextView) findViewById(R.id.exibeResposta);
+        exibindo.setText("pontos: " + pontos);
+    }
+    public int getPontos(){
+        int ponto= pontos;
+        return ponto;
+    }
+
+    public void selecionarOp(View view) {
+
+        switch (view.getId()) {
             case R.id.op1Radio:
-                TextView exibe = (TextView)findViewById(R.id.exibeResposta);
+                TextView exibe = (TextView) findViewById(R.id.exibeResposta);
                 exibe.setText("op1Radio");
                 armazenaResposta(1);
                 break;
             case R.id.op2Radio:
-                exibe = (TextView)findViewById(R.id.exibeResposta);
+                exibe = (TextView) findViewById(R.id.exibeResposta);
                 exibe.setText("op2Radio");
                 armazenaResposta(2);
                 break;
             case R.id.op3Radio:
-                exibe = (TextView)findViewById(R.id.exibeResposta);
+                exibe = (TextView) findViewById(R.id.exibeResposta);
                 exibe.setText("op3Radio");
                 armazenaResposta(3);
                 break;
             case R.id.op4Radio:
-                exibe = (TextView)findViewById(R.id.exibeResposta);
+                exibe = (TextView) findViewById(R.id.exibeResposta);
                 exibe.setText("op4Radio");
                 armazenaResposta(4);
                 break;
             case R.id.x:
-                exibe = (TextView)findViewById(R.id.exibeResposta);
+                exibe = (TextView) findViewById(R.id.exibeResposta);
                 exibe.setText("x");
                 armazenaResposta(5);
                 break;
             default:
                 setContentView(R.layout.activity_quiz);
         }
-
     }
-
 
 }
