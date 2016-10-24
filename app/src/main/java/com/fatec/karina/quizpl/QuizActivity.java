@@ -1,5 +1,6 @@
 package com.fatec.karina.quizpl;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -22,7 +23,8 @@ public class QuizActivity extends AppCompatActivity {
     public int[] minhaResposta = new int[5];
     public int posicao = 0;
     int pontos = 0;
-
+    int x = 2;
+    int y = x;
 
      @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +36,6 @@ public class QuizActivity extends AppCompatActivity {
          dados.criarTeste();
          Collections.shuffle(dados.questoes);
          atualizarQuestao();
-         //alterei para testar aqui
 
     }
 
@@ -47,6 +48,8 @@ public class QuizActivity extends AppCompatActivity {
     }
 
     public void atualizarQuestao() {
+
+
         Perguntas p = dados.questoes.get(posicao);
         limparRadios();
 
@@ -69,7 +72,7 @@ public class QuizActivity extends AppCompatActivity {
         RadioButton op5 = (RadioButton) findViewById(R.id.x);
         op5.setText(p.opcoes[4]);
 
-            }
+    }
 
     public void voltar(View view){
         limparRadios();
@@ -81,24 +84,34 @@ public class QuizActivity extends AppCompatActivity {
     }
 
     public void avancar(View view){
-        limparRadios();
-        if(posicao < dados.questoes.size()-1){
-            posicao++;
-            atualizarQuestao();
+            limparRadios();
+            if(posicao < dados.questoes.size()-1){
+                posicao++;
+                atualizarQuestao();
+                y-=1;
         }
+
+        if (posicao == x) {
+            //resultado();
+        }
+
     }
 
+    public void resultado(){
+        Intent i2 = new Intent(getApplicationContext(), Resultado.class);
+        i2.putExtra("pontos", pontos);
+        startActivity(i2);
+    }
+    
     public void armazenaResposta(int valor){
         Perguntas p = dados.questoes.get(posicao);
-        if(valor == p.resposta){
-            pontos+=1;
-                    }
-        limparRadios();
-        avancar(findViewById(R.id.activity_quiz));
-
-        TextView exibindo = (TextView)findViewById(R.id.exibeResposta);
-        exibindo.setText("pontos: " + pontos);
-
+            if(valor == p.resposta){
+                pontos+=1;
+            }
+            limparRadios();
+            avancar(findViewById(R.id.activity_quiz));
+            TextView exibindo = (TextView)findViewById(R.id.exibeResposta);
+            exibindo.setText("pontos: " + pontos);
     }
 
     public void selecionarOp(View view){
